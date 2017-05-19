@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 
 /**
@@ -17,14 +16,13 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Configuration
 @EnableOAuth2Sso
-@EnableWebMvc
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()   // Allow navigating to index page,
-                .anyRequest().authenticated();  // but secure all the other URLs
+                .antMatchers("/").permitAll()
+                .anyRequest().authenticated();
     }
 
     @Bean

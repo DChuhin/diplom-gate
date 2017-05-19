@@ -8,20 +8,20 @@ server:
 security:
   oauth2:
     client:
-      accessTokenUri: http://localhost:9096/auth/oauth/token
-      userAuthorizationUri: http://localhost:9096/auth/oauth/authorize
+      accessTokenUri: http://localhost:8096/auth/oauth/token
+      userAuthorizationUri: http://localhost:8096/auth/oauth/authorize
       clientId: myauthserver
       clientSecret: verysecretpassword
     resource:
-      userInfoUri: http://localhost:9096/auth/user
+      userInfoUri: http://localhost:8096/auth/user
 
 # Make sure the OAuth2 token is only relayed when using the internal API,
 # do not pass any authentication to the external
 zuul:
   routes:
     internalApi:
-      path: /api/**
-      url: http://localhost:8081
+      path: /**
+      url: http://localhost:8095/swagger-ui.html
     externalApi:
       path: /external/**
       url: http://some.external.webservice/
